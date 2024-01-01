@@ -1,0 +1,35 @@
+import React, { useContext } from "react";
+import { Link } from "react-router-dom";
+import CartContexts from "../store/CartContext";
+import UserProgressContext from "../store/ModalContext";
+
+function Navbar() {
+  const userProgressCtx = useContext(UserProgressContext);
+  const cartCtx = useContext(CartContexts);
+  const totalCartItems = cartCtx.items.reduce((totalNumberOfItems, item) => {
+    return totalNumberOfItems + item.quantity;
+  }, 0);
+
+  function handleShowCart() {
+    userProgressCtx.showCart();
+  }
+  return (
+    <header>
+      <nav className="flex justify-between p-3 text-xl font-semibold">
+        <ul className="flex justify-start ml-7 space-x-10 font-semibold text-xl">
+          <li className=" hover:text-amber-500">
+            <Link to="/">Homepage</Link>
+          </li>
+          <li className=" hover:text-amber-500">
+            <Link to="/login">login</Link>
+          </li>
+        </ul>
+        <button onClick={handleShowCart} className="mr-6  hover:text-amber-500">
+          Cart({totalCartItems})
+        </button>
+      </nav>
+    </header>
+  );
+}
+
+export default Navbar;
