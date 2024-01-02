@@ -22,7 +22,7 @@ export async function loader(params) {
 
   if (!response.ok) {
     //
-    console.log(1);
+    throw newError({messgae:"unable to fetch"});
   } else {
     const resData = await response.json();
     return resData.products;

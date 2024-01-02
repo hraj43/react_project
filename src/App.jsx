@@ -1,27 +1,35 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Product, { loader as productsLoader } from "./pages/Product";
 import Root from "./pages/Root";
-import Login from "./pages/Login";
+import Login,{action as authAction} from "./pages/Login";
 import SearchItems, { loader as searchLoader } from "./pages/SearchItems";
 import { CartContextProvider } from "./store/CartContext";
 import { UserProgressContextProvider } from "./store/ModalContext";
 import ErrorPage from "./components/ErrorPage";
+import {tokenLoader} from '../src/utils/Util'
+import {action as LogoutAction} from "../src/components/Logout"
+
+
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Root />,
     errorElement:<ErrorPage/>,
+    id:"root",
+    loader:tokenLoader,
     children: [
-      { path: "/", element: <Product />, loader: productsLoader },
+      { index:true, element: <Product />, loader: productsLoader },
       {
-        path: "/search/:items",
+        path: "search/:items",
         element: <SearchItems />,
         loader: ({ params }) => {
           return searchLoader(params.items);
         },
       },
-      { path: "login", element: <Login /> },
+      { path: "login",element: <Login /> ,action:authAction},
+      {path:"logout",action:LogoutAction}
+    
     ],
   },
 ]);
