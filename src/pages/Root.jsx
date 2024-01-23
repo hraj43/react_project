@@ -14,14 +14,18 @@ function Root() {
   return (
     <>
       <Navbar />
-        <div>
-          <SearchBox />
+      <div>
+        <SearchBox />
+        {navigation.state === "loading" ? (
+          <h1>Loading...</h1>
+        ) : (
           <main>
-              <Outlet />
+            <Outlet />
           </main>
-          <Cart />
-        </div>
-    
+        )}
+
+        <Cart />
+      </div>
     </>
   );
 }
