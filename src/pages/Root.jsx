@@ -14,23 +14,14 @@ function Root() {
   return (
     <>
       <Navbar />
-      {token ? (
         <div>
           <SearchBox />
           <main>
-            {navigation.state === "loading" ? (
-              <h1 className="w-full flex justify-center items-center text-5xl mt-12">
-                Loading....
-              </h1>
-            ) : (
               <Outlet />
-            )}
           </main>
           <Cart />
         </div>
-      ) : (
-        <Login />
-      )}
+    
     </>
   );
 }

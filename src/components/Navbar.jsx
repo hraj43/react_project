@@ -23,7 +23,7 @@ function Navbar() {
       <nav className="flex justify-between p-3 text-xl font-semibold">
         <ul className="flex justify-start ml-7 space-x-10 font-semibold text-xl">
           <li className=" hover:text-amber-500">
-            {token?<Link to="/">HomePage</Link>:null}
+            <Link to="/">HomePage</Link>
           </li>
           <li className=" hover:text-amber-500">
             <Form method='POST' action='/logout'>
@@ -31,9 +31,9 @@ function Navbar() {
             </Form>
           </li>
         </ul>
-        {token?<button onClick={handleShowCart} className="mr-6  hover:text-amber-500">
+      <button onClick={handleShowCart} className="mr-6  hover:text-amber-500">
         Cart({totalCartItems})
-        </button>:null}
+        </button>
       </nav>
     </header>
   );

@@ -14,5 +14,4 @@ function CartItem({ name, quantity, price, onIncrease, onDecrease }) {
     </li>
   );
 }
-
 export default CartItem;
